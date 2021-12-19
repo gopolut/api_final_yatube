@@ -8,7 +8,7 @@ from .permissions import IsAuthorOrReadOnly, IsFollowerOrReadOnly
 from posts.models import User, Group, Post, Comment, Follow
 
 
-class UserViewSet(viewsets.ReadOnlyModelViewSet):
+class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 

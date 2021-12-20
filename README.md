@@ -65,9 +65,10 @@ python3 manage.py runserver
 
 ## Примеры работы с API
 
-+ **GET-запрос** на получение списка всех публикаций: /api/v1/posts/
+**GET-запрос** на получение списка всех публикаций:
 
 ```
+/api/v1/posts/
 {
     "id": 0,
     "author": "string",
@@ -77,9 +78,9 @@ python3 manage.py runserver
     "group": 0
 }
 ```
-+ **GET-запрос** на получение списка всех публикаций с указанием параметров limit и offset
+**GET-запрос** на получение списка всех публикаций с указанием параметров limit и offset
 
-/api/v1/posts/?limit=2&offset=2
+`/api/v1/posts/?limit=2&offset=2`
 
 Выдача с пагинацией:
 
@@ -105,11 +106,11 @@ python3 manage.py runserver
 
 }
 ```
-+ **POST-запрос** на создание новой публикации:
+**POST-запрос** на создание новой публикации:
 
-/api/v1/posts/
 
 ```
+/api/v1/posts/
 {
 
     "text": "Новый пост",
@@ -134,11 +135,11 @@ python3 manage.py runserver
 }
 ```
 
-+ **POST-запрос** на добавление комментария к публикации
+**POST-запрос** на добавление комментария к публикации
 
-/api/v1/posts/{post_id}/comments/
 
 ```
+/api/v1/posts/{post_id}/comments/
 {
 
     "text": "Комментарий к новому посту"
@@ -160,9 +161,9 @@ python3 manage.py runserver
 }
 ```
 
-+ **Получение JWT-токена**
+**Получение JWT-токена**
 
-/api/v1/jwt/create/
+`/api/v1/jwt/create/`
 
 ```
 {
@@ -177,7 +178,7 @@ python3 manage.py runserver
 
 ```
 {
-    "refresh": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoic",
-    "access": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZX"
+    "refresh": "string",
+    "access": "string"
 }
 ```

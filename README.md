@@ -138,7 +138,7 @@ python3 manage.py runserver
 
 **POST-запрос** на добавление комментария к публикации:
 
-'/api/v1/posts/{post_id}/comments/'
+`/api/v1/posts/{post_id}/comments/`
 
 ```
 {

@@ -34,8 +34,8 @@ API для сервиса **Yatube** позволяет:
 Клонировать репозиторий и перейти в него в командной строке:
 
 ```
-git clone https://github.com/gopolut/api_final_yatube
-cd kittygram
+git clone https://github.com/gopolut/api_final_yatube.git
+cd api_final_yatube
 ```
 
 Cоздать и активировать виртуальное окружение:
@@ -64,26 +64,30 @@ python3 manage.py runserver
 ```
 
 ## Примеры работы с API
+API Yatube возвращает ответы в формате JSON.
 
 **GET-запрос** на получение списка всех публикаций:
 
-`/api/v1/posts/`
+`http://127.0.0.1:8000/api/v1/posts/`
 
 ```
 {
-    "id": 0,
-    "author": "string",
-    "text": "string",
+    "id": 1,
+    "author": "admin",
+    "text": "Новый пост",
     "pub_date": "2021-10-14T20:41:29.648Z",
-    "image": "string",
-    "group": 0
+    "image": "new_image.gif",
+    "group": 2
 }
 ```
 **GET-запрос** на получение списка всех публикаций с указанием параметров limit и offset:
 
-`/api/v1/posts/?limit=2&offset=2`
+limit - какое число объектов вернётся
+offset - с какого по счёту объекта начмнется отсчёт
 
-Выдача с пагинацией:
+`http://127.0.0.1:8000/api/v1/posts/?limit=2&offset=2`
+
+API возвращает список с пагинацией:
 
 ```
 {
@@ -109,7 +113,7 @@ python3 manage.py runserver
 ```
 * **POST-запрос** на создание новой публикации:
 
-`/api/v1/posts/`
+`http://127.0.0.1:8000/api/v1/posts/`
 
 ```
 {
@@ -138,7 +142,7 @@ python3 manage.py runserver
 
 **POST-запрос** на добавление комментария к публикации:
 
-`/api/v1/posts/{post_id}/comments/`
+`http://127.0.0.1:8000/api/v1/posts/{post_id}/comments/`
 
 ```
 {
@@ -164,7 +168,7 @@ python3 manage.py runserver
 
 **Получение JWT-токена**
 
-`/api/v1/jwt/create/`
+`http://127.0.0.1:8000/api/v1/jwt/create/`
 
 ```
 {

@@ -1,12 +1,13 @@
 from django.shortcuts import get_object_or_404
-from rest_framework import viewsets, filters
-from rest_framework.pagination import LimitOffsetPagination
-from django_filters.rest_framework import DjangoFilterBackend
 
-from .serializers import UserSerializer, PostSerializer, GroupSerializer, CommentSerializer, FollowSerializer
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import filters, viewsets
+from rest_framework.pagination import LimitOffsetPagination
+
 from .permissions import IsAuthorOrReadOnly, IsFollowerOrReadOnly
-from .pagination import CustomPagination
-from posts.models import User, Group, Post, Comment, Follow
+from .serializers import (CommentSerializer, FollowSerializer, GroupSerializer,
+                          PostSerializer, UserSerializer)
+from posts.models import Group, Post, User
 
 
 class UserViewSet(viewsets.ReadOnlyModelViewSet):
@@ -24,27 +25,21 @@ class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
     permission_classes = (IsAuthorOrReadOnly,)
-    pagination_class = LimitOffsetPagination #CustomPagination
-    filter_backends = (DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter)
+    pagination_class = LimitOffsetPagination
+    filter_backends = (DjangoFilterBackend, filters.SearchFilter,)
     filterset_fields = ('text', 'author', 'group', 'pub_date',)
     search_fields = ('text', 'author__username',) 
     
-    # ordering_fields = ('pub_date',)
-    # ordering = ('-pub_date',)
-
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
 
 
 class CommentViewSet(viewsets.ModelViewSet):
-    # queryset = Comment.objects.all()
     serializer_class = CommentSerializer
     permission_classes = (IsAuthorOrReadOnly, )
-    filter_backends = (DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter)
+    filter_backends = (DjangoFilterBackend, filters.SearchFilter,)
     filterset_fields = ('text', 'author',)
     search_fields = ('text', 'author__username',) 
-    ordering_fields = ('created',)
-    ordering = ('created',)
 
     def get_queryset(self):
         post = get_object_or_404(Post, pk=self.kwargs.get('post_id'))
@@ -58,7 +53,7 @@ class CommentViewSet(viewsets.ModelViewSet):
 
 class FollowViewSet(viewsets.ModelViewSet):
     serializer_class = FollowSerializer
-    permission_classes = (IsFollowerOrReadOnly,) #(permissions.IsAuthenticatedOrReadOnly,)
+    permission_classes = (IsFollowerOrReadOnly,)
     filter_backends = (DjangoFilterBackend, filters.SearchFilter)
     filterset_fields = ('user', 'following',)
     search_fields = ('user__username', 'following__username', )
@@ -69,6 +64,4 @@ class FollowViewSet(viewsets.ModelViewSet):
         return new_queryset
 
     def perform_create(self, serializer):
-        # following = self.kwargs.get('follow')
-        # print('following', following)
         serializer.save(user=self.request.user)

@@ -104,7 +104,6 @@ REST_FRAMEWORK = {
         'user': '1000/minute',
         'anon': '100/minute',
     },
-    'DEFAULT_PAGINATION_CLASS': 'api.pagination.CustomPagination'  
 }
 
 SIMPLE_JWT = {

@@ -1,5 +1,4 @@
-https://img.shields.io/github/languages/code-size/gopolut/api_final_yatube
-
+![size](https://img.shields.io/github/languages/code-size/gopolut/api_final_yatube)
 https://img.shields.io/pypi/pyversions/Django
 
 # Документация к API проекта Yatube (v1)

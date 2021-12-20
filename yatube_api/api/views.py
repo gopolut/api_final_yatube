@@ -28,8 +28,8 @@ class PostViewSet(viewsets.ModelViewSet):
     pagination_class = LimitOffsetPagination
     filter_backends = (DjangoFilterBackend, filters.SearchFilter,)
     filterset_fields = ('text', 'author', 'group', 'pub_date',)
-    search_fields = ('text', 'author__username',) 
-    
+    search_fields = ('text', 'author__username',)
+
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
 
@@ -39,7 +39,7 @@ class CommentViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthorOrReadOnly, )
     filter_backends = (DjangoFilterBackend, filters.SearchFilter,)
     filterset_fields = ('text', 'author',)
-    search_fields = ('text', 'author__username',) 
+    search_fields = ('text', 'author__username',)
 
     def get_queryset(self):
         post = get_object_or_404(Post, pk=self.kwargs.get('post_id'))

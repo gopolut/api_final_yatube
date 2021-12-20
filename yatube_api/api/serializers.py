@@ -33,6 +33,7 @@ class CommentSerializer(serializers.ModelSerializer):
 
 class PostSerializer(serializers.ModelSerializer):
     author = SlugRelatedField(slug_field='username', read_only=True)
+    # author = serializers.StringRelatedField(read_only=True)
     # comments = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
     comments = CommentSerializer(many=True, required=False)
 

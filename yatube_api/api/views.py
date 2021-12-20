@@ -5,10 +5,11 @@ from django_filters.rest_framework import DjangoFilterBackend
 
 from .serializers import UserSerializer, PostSerializer, GroupSerializer, CommentSerializer, FollowSerializer
 from .permissions import IsAuthorOrReadOnly, IsFollowerOrReadOnly
+from .pagination import CustomPagination
 from posts.models import User, Group, Post, Comment, Follow
 
 
-class UserViewSet(viewsets.ModelViewSet):
+class UserViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
@@ -23,12 +24,13 @@ class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
     permission_classes = (IsAuthorOrReadOnly,)
-    pagination_class = LimitOffsetPagination
+    pagination_class = LimitOffsetPagination #CustomPagination
     filter_backends = (DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter)
     filterset_fields = ('text', 'author', 'group', 'pub_date',)
     search_fields = ('text', 'author__username',) 
-    ordering_fields = ('pub_date',)
-    ordering = ('-pub_date',)
+    
+    # ordering_fields = ('pub_date',)
+    # ordering = ('-pub_date',)
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)

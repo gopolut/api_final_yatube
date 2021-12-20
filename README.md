@@ -1,4 +1,4 @@
-# api final
+# api_final_yatube
 
 ### Как запустить проект:
 

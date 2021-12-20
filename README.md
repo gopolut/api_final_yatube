@@ -66,9 +66,9 @@ python3 manage.py runserver
 ## Примеры работы с API
 
 **GET-запрос** на получение списка всех публикаций:
+'/api/v1/posts/'
 
 ```
-/api/v1/posts/
 {
     "id": 0,
     "author": "string",
@@ -108,9 +108,9 @@ python3 manage.py runserver
 ```
 **POST-запрос** на создание новой публикации:
 
+`/api/v1/posts/'
 
 ```
-/api/v1/posts/
 {
 
     "text": "Новый пост",
@@ -137,9 +137,8 @@ python3 manage.py runserver
 
 **POST-запрос** на добавление комментария к публикации
 
-
+'/api/v1/posts/{post_id}/comments/'
 ```
-/api/v1/posts/{post_id}/comments/
 {
 
     "text": "Комментарий к новому посту"
@@ -174,7 +173,7 @@ python3 manage.py runserver
 }
 ```
 
-Выдача:
+// Выдача:
 
 ```
 {

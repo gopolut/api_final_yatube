@@ -22,7 +22,7 @@ API для сервиса **Yatube** позволяет:
 + Подписываться на пользователей
 + Получать и обновлять JWT-токены
 
-[Полная документация API (redoc.yaml)](https://github.com/gopolut/api_final_yatube/yatube_api/static/redoc.yaml)
+[Полная документация API (redoc.yaml)](https://github.com/gopolut/api_final_yatube/blob/master/yatube_api/static/redoc.yaml)
 
 ## Как запустить проект:
 

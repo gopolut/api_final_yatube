@@ -77,7 +77,8 @@ python3 manage.py runserver
     "group": 0
 }
 ```
-> GET-запрос на получение списка всех публикаций с указанием параметров limit и offset:
++ **GET-запрос** на получение списка всех публикаций с указанием параметров limit и offset
+
 /api/v1/posts/?limit=2&offset=2
 
 Выдача с пагинацией:
@@ -85,7 +86,7 @@ python3 manage.py runserver
 ```
 {
 
-    "count": 123,
+    "count": 12,
     "next": "http://api.example.org/accounts/?offset=400&limit=100",
     "previous": "http://api.example.org/accounts/?offset=200&limit=100",
     "results": 
@@ -93,15 +94,90 @@ python3 manage.py runserver
 [
 
         {
-            "id": 0,
-            "author": "string",
-            "text": "string",
+            "id": 1,
+            "author": "admin",
+            "text": "Новый пост",
             "pub_date": "2021-10-14T20:41:29.648Z",
-            "image": "string",
-            "group": 0
+            "image": "new_image.gif",
+            "group": 2
         }
     ]
 
 }
 ```
++ **POST-запрос** на создание новой публикации:
 
+/api/v1/posts/
+
+```
+{
+
+    "text": "Новый пост",
+    "image": "new_image.gif",
+    "group": 2
+
+}
+```
+
+Выдача:
+
+```
+{
+
+    "id": 0,
+    "author": "admin",
+    "text": "Новый пост",
+    "pub_date": "2019-08-24T14:15:22Z",
+    "image": "new_image.gif",
+    "group": 2
+
+}
+```
+
++ **POST-запрос** на добавление комментария к публикации
+
+/api/v1/posts/{post_id}/comments/
+
+```
+{
+
+    "text": "Комментарий к новому посту"
+
+}
+```
+
+Выдача:
+
+```
+{
+
+    "id": 3,
+    "author": "admin",
+    "text": "Комментарий к новому посту",
+    "created": "2019-08-24T14:15:22Z",
+    "post": 5
+
+}
+```
+
++ **Получение JWT-токена**
+
+/api/v1/jwt/create/
+
+```
+{
+
+    "username": "admin",
+    "password": "password123"
+
+}
+```
+
+Выдача:
+
+```
+{
+    "refresh": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoic",
+    "access": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZX"
+}
+```

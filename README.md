@@ -66,9 +66,11 @@ python3 manage.py runserver
 ## Примеры работы с API
 API Yatube возвращает ответы в формате JSON.
 
-**GET-запрос** на получение списка всех публикаций:
+**GET-запрос** на получение списка публикаций или публикации по id:
 
 `http://127.0.0.1:8000/api/v1/posts/`
+
+`http://127.0.0.1:8000/api/v1/posts/{id}/`
 
 ```
 {
@@ -92,27 +94,41 @@ API возвращает список с пагинацией:
 
 ```
 {
-
-    "count": 12,
-    "next": "http://api.example.org/accounts/?offset=400&limit=100",
-    "previous": "http://api.example.org/accounts/?offset=200&limit=100",
-    "results": 
-
-[
-
+    "count": 7,
+    "next": "http://127.0.0.1:8000/api/v1/posts/?limit=2&offset=4",
+    "previous": "http://127.0.0.1:8000/api/v1/posts/?limit=2",
+    "results": [
         {
-            "id": 1,
-            "author": "admin",
+            "id": 3,
             "text": "Новый пост",
-            "pub_date": "2021-10-14T20:41:29.648Z",
-            "image": "new_image.gif",
-            "group": 2
+            "author": "admin",
+            "group": 2,
+            "image": new_image.gif,
+            "pub_date": "2021-12-19T23:17:49.970699Z",
+            "comments": [
+                {
+                    "id": 1,
+                    "author": "pavel",
+                    "post": 3,
+                    "text": "Коммент к посту",
+                    "created": "2021-12-20T17:30:55.156898Z"
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "text": "Тестовый пост",
+            "author": "admin",
+            "group": 2,
+            "image": new_image.gif,
+            "pub_date": "2021-12-19T23:43:29.507337Z",
+            "comments": []
         }
     ]
-
 }
 ```
-* **POST-запрос** на создание новой публикации:
+**POST-запрос** на создание новой публикации:
+Поле **text** является обязательным
 
 `http://127.0.0.1:8000/api/v1/posts/`
 

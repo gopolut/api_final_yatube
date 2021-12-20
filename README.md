@@ -1,4 +1,5 @@
-![GitHub Pipenv locked Python version](https://img.shields.io/github/pipenv/locked/python-version/gopolut/api_final_yatube)
+https://img.shields.io/github/languages/code-size/gopolut/api_final_yatube https://img.shields.io/pypi/pyversions/Django
+
 # Документация к API проекта Yatube (v1)
 
 REST API для проекта **Yatube**. Социальная сеть для публикации личных дневников.

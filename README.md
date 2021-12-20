@@ -109,9 +109,9 @@ python3 manage.py runserver
 ```
 * **POST-запрос** на создание новой публикации:
 
-* ** `/api/v1/posts/'
+`/api/v1/posts/`
 
-* ** ```
+```
 {
 
     "text": "Новый пост",
@@ -119,7 +119,7 @@ python3 manage.py runserver
     "group": 2
 
 }
-* ** ```
+```
 
 Выдача:
 
@@ -175,7 +175,7 @@ python3 manage.py runserver
 }
 ```
 
-// Выдача:
+Выдача:
 
 ```
 {
